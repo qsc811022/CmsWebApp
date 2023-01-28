@@ -172,5 +172,30 @@ namespace CmsWebApp.Areas.Admin.Controllers
             //Redirect
             return RedirectToAction("EditPage");
         }
+        
+
+        // GET:Admin/Pages/PageDetails
+        public ActionResult PageDetails(int id)
+        {
+            //Declare PageVM
+            PageVM model;
+            using (Db db = new Db())
+            {
+
+
+                //Get the page
+                PageDTO dto = db.Pages.Find(id);
+
+                //Confirm page exists
+                if (dto ==null)
+                {
+                    return Content("The page does not exist");
+                }
+
+                //Init PageVM
+                model = new PageVM(dto);
+            }
+            return View(model);
+        }
     }
 }
