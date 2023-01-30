@@ -197,5 +197,24 @@ namespace CmsWebApp.Areas.Admin.Controllers
             }
             return View(model);
         }
+
+        // GET:Admin/DeletePage/id
+        public ActionResult DeletePage(int id)
+        {
+            using (Db db = new Db())
+            {
+                //Get the page
+                PageDTO dto=db.Pages.Find(id);
+                //Remove the page
+                db.Pages.Remove(dto);
+                //Save
+
+
+            }
+
+            //Redirect
+            return RedirectToAction("Index");
+        }
+
     }
 }
