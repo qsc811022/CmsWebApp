@@ -208,7 +208,7 @@ namespace CmsWebApp.Areas.Admin.Controllers
                 //Remove the page
                 db.Pages.Remove(dto);
                 //Save
-
+                db.SaveChanges();
 
             }
 
