@@ -215,6 +215,10 @@ namespace CmsWebApp.Areas.Admin.Controllers
             //Redirect
             return RedirectToAction("Index");
         }
-
+        //post: admin/Pages/RecorderPages
+        public ActionResult ReorderPage(int[] id)
+        {
+            return View();
+        }
     }
 }
