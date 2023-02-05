@@ -216,9 +216,26 @@ namespace CmsWebApp.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
         //post: admin/Pages/RecorderPages
-        public ActionResult ReorderPage(int[] id)
+        [HttpPost]
+        public void ReorderPage(int[] id)
         {
-            return View();
+            using (Db db= new Db())
+            {
+                //Set initial count
+                int count=1;
+                //Declare PageDTO
+                PageDTO dto;
+                //Set sorting for each page
+                foreach (var pageId in id)
+                {
+                    dto=db.Pages.Find(pageId);
+                    dto.Sorting=count;
+                    db.SaveChanges();
+                    count++;
+                }
+
+
+            }
         }
     }
 }

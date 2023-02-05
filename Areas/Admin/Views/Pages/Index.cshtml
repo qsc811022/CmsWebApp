@@ -4,7 +4,16 @@
     ViewBag.Title = "Pages";
 }
 
-<script type="text/javascript" src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+
+<style>
+    table.sorting tr:not(.home) {
+        cursor: pointer;
+    }
+
+    .ui-state-highlight {
+        border: 1px dashed #ccc;
+    }
+</style>
 
 <h2>Pages</h2>
 <p>
@@ -55,9 +64,8 @@ else
         }
 
     </table>
-}
 
-@section Scripts{
+<script type="text/javascript" src="~/scripts/jquery-ui.min.js"></script>
 
     <script>
         $(function () {
@@ -68,22 +76,25 @@ else
             });
             /*Confirm page deleteion*/
 
+            //$("a.delete").click(function () {
+            //    if (!confirm("Confirm page deletion")) return false;
+            //});
+
             $("table#pages tbody").sortable({
-                items: "tr:not(.home)",
-                placeholder: "ui-state-highlight",
+                items:"tr:not(.home)",
+                placeholder:"ui-state-hightlight",
                 update: function () {
-                    var ids = $("table#pages tobody").sortable("serialize");
-                    var url = "/Admin/Pages/ReorderPages";
-                    $.post(url, ids, function (data)){
-
-                    })
-                    /* console.log(ids)*/
+                    var ids = $("table#pages tbody").sortable("serialize");
+                    var url = "/Admin/Pages/ReorderPage";
+                    $.post(url, ids, function (data) { });
+                    
                 }
-            });
 
+            })
 
+        })   
 
-        });
+        
     </script>
 
 }
