@@ -267,16 +267,17 @@ namespace CmsWebApp.Areas.Admin.Controllers
                 //Get the DTO
                 SidebarDTO dto = db.Sidebar.Find(1);
                 // Init model
-          
+                dto.Body=model.Body;
                 //Save
+                db.SaveChanges();
 
             }
 
             //Set TempData message
-
+            TempData["SM"] = "You have edited the sidebar";
 
             //Redirect
-            return View(model);
+            return RedirectToAction("EditSidebar");
         }
     }
 }
