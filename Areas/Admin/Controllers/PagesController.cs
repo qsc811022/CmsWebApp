@@ -237,5 +237,46 @@ namespace CmsWebApp.Areas.Admin.Controllers
 
             }
         }
+
+
+        //GET: admin/pages/EditSidebar
+        [HttpGet]
+        public ActionResult EditSidebar()
+        {
+            // Declare model
+            SidebarVM model;
+            using (Db db =new Db())
+            {
+                //Get the DTO
+                SidebarDTO dto = db.Sidebar.Find(1);
+                // Init model
+                model=new SidebarVM(dto);
+            }
+
+
+            //return view with model
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditSidebar(SidebarVM model)
+        {
+            // Declare model
+            using (Db db = new Db())
+            {
+                //Get the DTO
+                SidebarDTO dto = db.Sidebar.Find(1);
+                // Init model
+          
+                //Save
+
+            }
+
+            //Set TempData message
+
+
+            //Redirect
+            return View(model);
+        }
     }
 }
