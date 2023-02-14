@@ -5,9 +5,21 @@
 }
 
 <h2>Categories</h2>
+<style>
+    .new-cat {
+        margin-top: 30px;
+        position: relative;
+    }
+
+    .ajax-text {
+        display: none
+    }
+
+
+</style>
 
 <div class="new-cat">
-    <input type="text" id="newcatname"/>
+    <input type="text" id="newcatname" />
     <p>
         <a href="#" id="newcata">Add a new category</a>
         <span class="ajax-text">
@@ -15,7 +27,7 @@
         </span>
 
     </p>
-   
+
 </div>
 
 @if (!Model.Any())
@@ -24,26 +36,68 @@
 
 }
 else
-{ 
+{
 
 
-<table class="table sorting" id="pages">
-    <tr class="home">
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.EditorFor(modelItem => item.Name, new { htmlAttributes = new { @class = "form-control", @readyonly="readonly" } })
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "DeleteCategory", new { id=item.Id }, new{@class="delete"})
-        </td>
-    </tr>
+    <table class="table sorting" id="pages">
+        <tr class="home">
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.EditorFor(modelItem => item.Name, new { htmlAttributes = new { @class = "form-control", @readyonly = "readonly" } })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "DeleteCategory", new { id = item.Id }, new { @class = "delete" })
+                </td>
+            </tr>
+        }
+
+    </table>
 }
 
-</table>
-}
+
+<script type="text/javascript" src="~/scripts/jquery-ui.min.js"></script>
+
+<script>
+        $(function () {
+
+
+            /*
+             * 
+             * Add New category
+             
+             */
+
+
+
+
+
+            /*Confirm page deleteion*/
+
+            //$("a.delete").click(function () {
+            //    if (!confirm("Confirm page deletion")) return false;
+            //});
+
+            $("table#pages tbody").sortable({
+                items:"tr:not(.home)",
+                placeholder:"ui-state-hightlight",
+                update: function () {
+                    var ids = $("table#pages tbody").sortable("serialize");
+                    var url = "/Admin/Pages/ReorderPage";
+                    $.post(url, ids, function (data) { });
+
+                }
+
+            })
+
+        })
+
+
+</script>
+
