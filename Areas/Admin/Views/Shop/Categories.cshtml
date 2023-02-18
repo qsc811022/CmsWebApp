@@ -118,7 +118,10 @@ else
                             newCatTextInput.val("");
 
                             var toAppend = $("table#pages tbody tr:last").clone();
-
+                            toAppend.attr("id", "id_" + data);
+                            toAppend.find("#item_Name").val(cateName);
+                            toAppend.find("a.delete").attr("href", "/admin/shop/DeleteCategory/" + data)
+                            table.append(toAppend);
                         }
                     }
 
