@@ -66,8 +66,6 @@ else
 
 <script>
         $(function () {
-
-
             /*
              * 
              * Add New category
@@ -94,14 +92,17 @@ else
                     return false;
                 }
                 ajaxText.show();
-                var url = "/admin/shop/AddNewCategory";
+                var url = "/Admin/Shop/AddNewCategory";
 
                 $.post(url, { cateName: cateName }, function (data) {
                     var response = data.trim();
+
                     if (response == "titletaken") {
                         ajaxText.html("<span class='alert alert-danger'>That title is taken!</span>")
                         setTimeout(function () {
-                            ajaxText.html("<img src=/Content/img/ajax-loader.gif />")
+                            ajaxText.fadeOut("fast", function () {
+                                ajaxText.html("<img src=/Content/img/ajax-loader.gif />")
+                            });
                         }, 2000);
                         return false;
                     }
@@ -112,7 +113,10 @@ else
                         else {
                             ajaxText.html("<span class='alert alert-success'>The category has been added</span>")
                             setTimeout(function () {
-                                ajaxText.html("<img src=/Content/img/ajax-loader.gif />")
+                                ajaxText.fadeOut("fast", function () {
+                                    ajaxText.html("<img src=/Content/img/ajax-loader.gif />")
+                                });
+
                             }, 2000);
 
                             newCatTextInput.val("");
