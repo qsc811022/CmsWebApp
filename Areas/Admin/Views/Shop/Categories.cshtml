@@ -19,7 +19,7 @@
 </style>
 
 <div class="new-cat">
-    <input type="text" id="newcatname" />
+    <input type="text" id="newCatname" />
     <p>
         <a href="#" id="newcata">Add a new category</a>
         <span class="ajax-text">
@@ -73,7 +73,7 @@ else
              */
             var newCatA = $("a#newcata");
             var newCatTextInput = $("#newCatname");
-            var ajaxText = $("span.ajax-text");
+            var ajaxText = $(".ajax-text");
             var table = $("table#pages tbody");
 
             newCatTextInput.keyup(function (e) {
@@ -92,7 +92,7 @@ else
                     return false;
                 }
                 ajaxText.show();
-                var url = "/Admin/Shop/AddNewCategory";
+                var url = "Admin/Shops/AddNewCategory";
 
                 $.post(url, { cateName: cateName }, function (data) {
                     var response = data.trim();
