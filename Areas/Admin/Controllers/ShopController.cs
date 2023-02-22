@@ -51,7 +51,7 @@ namespace CmsWebApp.Areas.Admin.Controllers
                 //Add to DTO
 
                 dto.Name=catName;
-                dto.Slug=catName.Replace("","-").ToLower();
+                dto.Slug=catName.Replace(" ","-").ToLower();
                 dto.Sorting=100;
 
                 //Save DTO
